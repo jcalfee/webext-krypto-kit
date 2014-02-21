@@ -43,5 +43,21 @@ function _Chrome() {
 			// TODO, call find_addresses.js
 		}
 	};
+	this.runtime = {
+		getManifest : function() {
+			var manifest = undefined;
+			$.ajax({
+				url : 'manifest.json',
+				type : 'get',
+				dataType : 'json',
+				cache : false,
+				success : function(data) {
+					manifest = data;
+				},
+				async : false,
+			});
+			return manifest;
+		}
+	};
 }
 _chrome = new _Chrome();

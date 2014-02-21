@@ -124,8 +124,6 @@ _chrome.extension.onRequest.addListener(function (object)
 
 window.onload = function ()
 {
-
- 
   document.getElementById('resetAddress').onclick = rush.prepareReset;
 
   $(document).on("click", '#send', function (event)
