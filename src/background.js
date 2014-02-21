@@ -31,10 +31,10 @@ function loadContext ()
 {
 	if ( rush.gpgKeys.length > 0 )
 	{
-		var parent = chrome.contextMenus.create({"title": "Encrypt Selection", "contexts":["selection"]});
+		var parent = _chrome.contextMenus.create({"title": "Encrypt Selection", "contexts":["selection"]});
 		for ( i in rush.gpgKeys )
 		{
-			childid = chrome.contextMenus.create({"title": rush.gpgKeys[i].name, "parentId": parent, "onclick": encryptSelection, "contexts":["selection"]});
+			childid = _chrome.contextMenus.create({"title": rush.gpgKeys[i].name, "parentId": parent, "onclick": encryptSelection, "contexts":["selection"]});
 
 			bg.contextEncrypt[childid] = i;
 
@@ -47,7 +47,7 @@ function loadContext ()
 //end context
 
 //trusted
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
+_chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
     if ( "category" in rush.directory )
     {
     	rush.getPageInfo();
@@ -58,7 +58,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
     }
 });
 
-chrome.tabs.onActivated.addListener(function(tabId, changeInfo) {
+_chrome.tabs.onActivated.addListener(function(tabId, changeInfo) {
 	if ( "category" in rush.directory )
 	{
 		rush.getPageInfo();
@@ -89,7 +89,7 @@ setInterval( function() {
 function getFiatValue ()
 {
 
-	chrome.storage.local.get(["currency"], function (data) {
+	_chrome.storage.local.get(["currency"], function (data) {
 		
 		var currency ="USD";
 
@@ -111,7 +111,7 @@ function getFiatValue ()
 
 		    
 
-		    chrome.storage.local.set( {"price": price} , function (data) {
+		    _chrome.storage.local.set( {"price": price} , function (data) {
 
 		    });
 
@@ -128,7 +128,7 @@ function getFiatValue ()
 function checkMessages( )
 {
 
-	chrome.storage.local.get(["gpgPublic", "prevSecret"], function (data) {
+	_chrome.storage.local.get(["gpgPublic", "prevSecret"], function (data) {
 
 		if ( data.gpgPublic )
 		{
@@ -155,9 +155,9 @@ function checkMessages( )
 		    	
 		    	if ( res.count != "0" )
 		    	{
-		    		chrome.browserAction.setBadgeBackgroundColor({color:"#FF0000"});
+		    		_chrome.browserAction.setBadgeBackgroundColor({color:"#FF0000"});
 
-		    		chrome.browserAction.setBadgeText({text: "" + res.count });
+		    		_chrome.browserAction.setBadgeText({text: "" + res.count });
 
 		    		rush.msgCount = res.count;
 		    		
@@ -175,7 +175,7 @@ function checkMessages( )
 		  				}
 
 
-		    			chrome.notifications.create(
+		    			_chrome.notifications.create(
 		    			  'id' + new Date().getTime(),{   
 		    			      type: 'basic', 
 		    			      iconUrl: 'KryptoKit_48.png', 
@@ -191,16 +191,16 @@ function checkMessages( )
 
 		    		bg.count = res.count;
 
-		    		chrome.extension.sendRequest({"msgCount":res.count, "type": "messageCount"});
+		    		_chrome.extension.sendRequest({"msgCount":res.count, "type": "messageCount"});
 
 
 		    	}
 		    	else
 		    	{
-		    		chrome.browserAction.getBadgeText({}, function (txt) {
+		    		_chrome.browserAction.getBadgeText({}, function (txt) {
 		    			if ( txt != "OK" )
 		    			{
-		    				chrome.browserAction.setBadgeText({text: "" });
+		    				_chrome.browserAction.setBadgeText({text: "" });
 		    			}		    		
 
 		    		});
@@ -208,7 +208,7 @@ function checkMessages( )
 
 		    	}
 
-		    	chrome.storage.local.set( {"msgCount": res.count} , function (data) {
+		    	_chrome.storage.local.set( {"msgCount": res.count} , function (data) {
 					rush.msgCount = res.count;
 		    	});
 
@@ -233,7 +233,7 @@ function saveMsg( msg )
 		msg = "";
 	}
 
-	chrome.storage.local.set( {"msgBuffer": msg} , function (data) {
+	_chrome.storage.local.set( {"msgBuffer": msg} , function (data) {
 	});
 	
 }

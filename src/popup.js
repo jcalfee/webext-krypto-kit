@@ -30,7 +30,7 @@ var unique = function (origArr)
     return newArr;
 };
 
-chrome.extension.onRequest.addListener(function (object)
+_chrome.extension.onRequest.addListener(function (object)
 {
 
   var addresses = object.addresses;
@@ -189,7 +189,7 @@ window.onload = function ()
 
   $(document).on("click", '#txHistory', function (event)
   {
-    chrome.tabs.create(
+    _chrome.tabs.create(
     {
       url: "https://blockchain.info/address/" + rush.address
     });
@@ -197,7 +197,7 @@ window.onload = function ()
 
   $(document).on("click", '.donateSiteLink', function (event)
   {
-    chrome.tabs.create(
+    _chrome.tabs.create(
     {
       url: $(this).attr("link")
     });
@@ -237,12 +237,12 @@ window.onload = function ()
 
   $(document).on("click", '#shareKey', function (event)
   {
-    chrome.tabs.create({ url: $(this).attr("share") });
+    _chrome.tabs.create({ url: $(this).attr("share") });
   });
 
   $(document).on("click", '#contact', function (event)
   {
-    chrome.tabs.create({ url: "mailto:support@kryptokit.com" });
+    _chrome.tabs.create({ url: "mailto:support@kryptokit.com" });
   });
 
   $(document).on("click", '#confirmGPGCreate', function (event)
@@ -421,21 +421,21 @@ window.onload = function ()
   
   $(document).on("dblclick", '.address', function (event)
   {
-    chrome.tabs.create({
+    _chrome.tabs.create({
       'url': "https://blockchain.info/address/" + $(this).attr("address") }, function(tab) {
       });
   });
 
   $(document).on("click", '.newsItem', function (event)
   {
-    chrome.tabs.create({
+    _chrome.tabs.create({
       'url': $(this).attr("link") }, function(tab) {
       });
   });
 
   $(document).on("click", '.newsItemReddit', function (event)
   {
-    chrome.tabs.create({
+    _chrome.tabs.create({
       'url': "http://reddit.com" + $(this).attr("link") }, function(tab) {
       });
   });
@@ -491,7 +491,7 @@ window.onload = function ()
   {
     idcompany = $(this).attr("idcompany");
 
-    chrome.tabs.create({
+    _chrome.tabs.create({
       'url': "http://" + rush.directory.company[idcompany].site }, function(tab) {
       });
   });
@@ -570,7 +570,7 @@ window.onload = function ()
   }); 
 
 
-  var background = chrome.extension.getBackgroundPage();
+  var background = _chrome.extension.getBackgroundPage();
 
   addEventListener("unload", function (event)
   {
@@ -594,16 +594,16 @@ window.onload = function ()
     rush.amountFiatValue($(this).val());
   });
 
-  chrome.windows.getCurrent(function (currentWindow)
+  _chrome.windows.getCurrent(function (currentWindow)
   {
-    chrome.tabs.query(
+    _chrome.tabs.query(
       {
         active: true,
         windowId: currentWindow.id
       },
       function (activeTabs)
       {
-        chrome.tabs.executeScript(
+        _chrome.tabs.executeScript(
           activeTabs[0].id,
           {
             file: 'find_addresses.js',

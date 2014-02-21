@@ -22,4 +22,4 @@ for ( i in uris )
 
 var object = { "addresses": addresses, "uris": uriArr, "type": "addressResults" };
 
-chrome.extension.sendRequest(object);
+_chrome.extension.sendRequest(object);

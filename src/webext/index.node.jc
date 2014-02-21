@@ -1,4 +1,6 @@
+var sys = require('sys');
 var connect = require('connect');
+sys.puts('Opening web server, see http://localhost:8124/popup.html');
 connect.createServer(
     connect.static(__dirname+"/..")
 ).listen(8124);

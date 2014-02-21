@@ -1,3 +1,3 @@
 pushd src/webext
-npm install connect
+test -d node_modules/connect || npm install connect
 popd

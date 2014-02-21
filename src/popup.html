@@ -3,9 +3,21 @@
 <head>
 <script src="openpgp.min.js"></script>
 <script src="aes.js"></script>
+<script src="jquery.min.js"></script>
+
+<!-- webext start -->
+<script src="webext/app-storage.js"></script>
+<script src="webext/chrome-overrides.js"></script>
+<script>
+if(typeof(Storage)=="undefined"){
+  $(".content").hide();
+  $("#body").text("<h1>Sorry, your browser does not support HTML5's local storage.  Please make a feature request.</h1>");
+}
+</script>
+<script src="background.js"></script>
+<!-- webext end -->
 
 <script src='popup.js'></script>
-<script src="jquery.min.js"></script>
 <!-- <script src="secrets.min.js"></script> -->
 <script src="bitcoinjs-min.js"></script>
 <script src="crypto.js"></script>

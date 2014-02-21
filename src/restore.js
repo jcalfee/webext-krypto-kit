@@ -43,7 +43,7 @@ function restore()
             rush.currency = restore.currency;
             rush.contacts = restore.contacts;
 
-            chrome.storage.local.set(
+            _chrome.storage.local.set(
             {
                 'code': rush.passcode,
                 'encrypted': rush.encrypted,

@@ -64,7 +64,7 @@ var entroMouse = window.entroMouse = {
 
                     $("#errorBox").hide();
 
-                    chrome.storage.local.set(
+                    _chrome.storage.local.set(
                     {
                         'code': entroMouse.string,
                         'address': address,
@@ -372,7 +372,7 @@ rush = window.rush = {
     "open": function ()
     {
 
-        var manifest = chrome.runtime.getManifest();
+        var manifest = _chrome.runtime.getManifest();
 
         $(".logo").html("KryptoKit v" + manifest.version);
 
@@ -476,17 +476,17 @@ rush = window.rush = {
     {
         this.openTab("help");
 
-        // chrome.tabs.create({url: chrome.extension.getURL('help.html')});
+        // _chrome.tabs.create({url: _chrome.extension.getURL('help.html')});
     },
     "userManual": function ()
     {
-        chrome.tabs.create({
+        _chrome.tabs.create({
           'url':'http://kryptokit.com/getting-started.html' }, function(tab) {
           });
     },
     "prepareRestore": function ()
     {
-        chrome.tabs.create({url: chrome.extension.getURL('restore.html')});
+        _chrome.tabs.create({url: _chrome.extension.getURL('restore.html')});
     },
     "restore": function (evt)
     {
@@ -523,7 +523,7 @@ rush = window.rush = {
                 rush.currency = restore.currency;
                 rush.contacts = restore.contacts;
 
-                chrome.storage.local.set(
+                _chrome.storage.local.set(
                 {
                     'code': rush.passcode,
                     'encrypted': rush.encrypted,
@@ -702,7 +702,7 @@ rush = window.rush = {
             price = msg.last;
 
             rush.price = price;
-            chrome.storage.local.set( {"price": price} , function (data) {
+            _chrome.storage.local.set( {"price": price} , function (data) {
 
             });
 
@@ -740,7 +740,7 @@ rush = window.rush = {
 
         $("#errorBox").hide();
 
-        // chrome.storage.local.set(
+        // _chrome.storage.local.set(
         // {
         //     'encrypted': false
         // }, function () {});
@@ -776,7 +776,7 @@ rush = window.rush = {
 
         this.encrypted = false;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'code': passcode,
             'encrypted': false
@@ -811,7 +811,7 @@ rush = window.rush = {
         this.passcode = encrypted;
         this.encrypted = true;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'code': encrypted,
             'encrypted': true
@@ -838,7 +838,7 @@ rush = window.rush = {
         $( "#" + tab + "Tab" ).addClass("selected");
         $( "#" + tab + "Page" ).show();
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'lastTab': tab,
         }, function (){});
@@ -1165,7 +1165,7 @@ rush = window.rush = {
         this.encrypted = false;
         this.txSec = "";
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'code': rush.passcode,
             'encrypted': false,
@@ -1219,7 +1219,7 @@ rush = window.rush = {
 
         this.gpgPrivate = keypair.privateKeyArmored;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'gpgPrivate': rush.gpgPrivate,
             'gpgPublic': rush.gpgPublic
@@ -1232,7 +1232,7 @@ rush = window.rush = {
 
             $("#gpgCreate2").hide();
 
-            chrome.storage.local.set(
+            _chrome.storage.local.set(
             {
                 'gpgPassword': ""
             }, function ()
@@ -1289,7 +1289,7 @@ rush = window.rush = {
             return (a.name.toUpperCase() < b.name.toUpperCase()) ? -1 : 1;
         });
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'gpgKeys': rush.gpgKeys
         }, function ()
@@ -1340,7 +1340,7 @@ rush = window.rush = {
 
         rush.gpgPublic = publicKeyTxt;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'gpgPublic': rush.gpgPublic,
             'gpgPrivate': rush.gpgPrivate
@@ -1406,7 +1406,7 @@ rush = window.rush = {
     {
         if ($("#gpgSavePassword").is(':checked'))
         {
-            chrome.storage.local.set(
+            _chrome.storage.local.set(
             {
                 'gpgPassword': $("#gpgPassword").val()
             }, function ()
@@ -1416,7 +1416,7 @@ rush = window.rush = {
         }
         else
         {
-            chrome.storage.local.set(
+            _chrome.storage.local.set(
             {
                 'gpgPassword': ""
             }, function ()
@@ -1654,7 +1654,7 @@ rush = window.rush = {
 
                     rush.prevSecret = secret;
 
-                    chrome.storage.local.set(
+                    _chrome.storage.local.set(
                     {
                         'prevSecret': rush.prevSecret
                     }, function () {});
@@ -1753,7 +1753,7 @@ rush = window.rush = {
 
                     }
 
-                    chrome.storage.local.set(
+                    _chrome.storage.local.set(
                     {
                         'gpgMessages': rush.gpgMessages
                     }, function ()
@@ -1766,7 +1766,7 @@ rush = window.rush = {
 
                     $("#msgCount").html("(0)");
 
-                    chrome.storage.local.set(
+                    _chrome.storage.local.set(
                     {
                         'msgCount': 0
                     }, function (){
@@ -1774,7 +1774,7 @@ rush = window.rush = {
 
                     rush.msgCount = 0;
 
-                    chrome.browserAction.setBadgeText(
+                    _chrome.browserAction.setBadgeText(
                     {
                         text: ""
                     });
@@ -1815,7 +1815,7 @@ rush = window.rush = {
                 return (a.name.toUpperCase() < b.name.toUpperCase()) ? -1 : 1;
             });
 
-            chrome.storage.local.set(
+            _chrome.storage.local.set(
             {
                 'contacts': rush.contacts
             }, function ()
@@ -1846,7 +1846,7 @@ rush = window.rush = {
 
         rush.contacts.splice(listID, 1);
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'contacts': rush.contacts
         }, function ()
@@ -1964,7 +1964,7 @@ rush = window.rush = {
 
         rush.gpgMessages.splice(msgID, 1);
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'gpgMessages': rush.gpgMessages
         }, function ()
@@ -1984,7 +1984,7 @@ rush = window.rush = {
 
         this.gpgMessages[msgID].read = true;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'gpgMessages': rush.gpgMessages
         }, function () {
@@ -2015,7 +2015,7 @@ rush = window.rush = {
 
         // this.gpgMessages[msgID].read = true;  
 
-        // chrome.storage.local.set({
+        // _chrome.storage.local.set({
         //     'gpgMessages'       : rush.gpgMessages
         // }, function () {
 
@@ -2100,7 +2100,7 @@ rush = window.rush = {
 
         rush.gpgKeys.splice(userID, 1);
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'gpgKeys': rush.gpgKeys
         }, function ()
@@ -2246,7 +2246,7 @@ rush = window.rush = {
         newsType = $("#newsType").val();
         this.newsType = newsType;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'newsType': newsType
         }, function () {
@@ -2272,7 +2272,7 @@ rush = window.rush = {
         currency = $("#currencies").val();
         this.currency = currency;
 
-        chrome.storage.local.set(
+        _chrome.storage.local.set(
         {
             'currency': currency
         }, function () {
@@ -2375,7 +2375,7 @@ rush = window.rush = {
 
         //             var imageData = context.getImageData(0, 0, 19, 19);
 
-        //             chrome.browserAction.setIcon({
+        //             _chrome.browserAction.setIcon({
         //               imageData: imageData
         //             });
 
@@ -2397,7 +2397,7 @@ rush = window.rush = {
 
                 var imageData = context.getImageData(0, 0, 19, 19);
 
-                chrome.browserAction.setIcon({
+                _chrome.browserAction.setIcon({
                   imageData: imageData
                 });
                 
@@ -2415,7 +2415,7 @@ rush = window.rush = {
 
                 var imageData = context.getImageData(0, 0, 19, 19);
 
-                chrome.browserAction.setIcon({
+                _chrome.browserAction.setIcon({
                   imageData: imageData
                 });
                 
@@ -2425,7 +2425,7 @@ rush = window.rush = {
     },
     "getPageInfo": function ()
     {
-        chrome.tabs.getSelected(null,function(tab) {
+        _chrome.tabs.getSelected(null,function(tab) {
 
       
             var tablink = tab.url;
@@ -2605,7 +2605,7 @@ $(document).ready(function ()
 
     var code = window.location.hash;
 
-    chrome.storage.local.get(["code", "address", "password", "encrypted", "gpgPublic", "gpgPrivate", "gpgKeys", "msgCount", "gpgMessages", "gpgPassword", "msgBuffer", "price", "lastTab", "currency", "newsType", "contacts"], function (data)
+    _chrome.storage.local.get(["code", "address", "password", "encrypted", "gpgPublic", "gpgPrivate", "gpgKeys", "msgCount", "gpgMessages", "gpgPassword", "msgBuffer", "price", "lastTab", "currency", "newsType", "contacts"], function (data)
     {
 
         if ( data.msgCount != undefined)
