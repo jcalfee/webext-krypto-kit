@@ -9,11 +9,11 @@ if (typeof AppStorage == "undefined" || !AppStorage.loadNameValueArray) {
 			}
 		};
 
-		AppStorage.saveNameValueArray = function(names, values) {
-			for ( var int = 0; int < names.length; int++) {
-				var key = names[int];
-				values[key] = localStorage.setItem(key, values[key]);
-			}
+		AppStorage.saveNameValueArray = function(data, callback) {
+			$.each(data, function(k, v) {
+				localStorage.setItem(k, v);
+			});
+			callback();
 		};
 
 	})();// AppStorage

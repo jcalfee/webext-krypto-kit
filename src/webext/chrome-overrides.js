@@ -1,6 +1,5 @@
 var THIS = this;
 function _Chrome() {
-	this.abc = {};
 	this.tabs = {
 		onUpdated : {
 			addListener : function(listener) {
@@ -22,8 +21,8 @@ function _Chrome() {
 				AppStorage.loadNameValueArray(parms, data);
 			},
 
-			set : function(parms, data) {
-				AppStorage.saveNameValueArray(parms, data);
+			set : function(parms, callback) {
+				AppStorage.saveNameValueArray(parms, callback);
 			}
 		}
 	};
