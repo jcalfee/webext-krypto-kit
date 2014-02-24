@@ -14,7 +14,16 @@ if(typeof(Storage)=="undefined"){
   $("#body").text("<h1>Sorry, your browser does not support HTML5's local storage.  Please make a feature request.</h1>");
 }
 </script>
-<script src="background.js"></script>
+<script>
+$(function () {
+    $.getScript('background.js');
+    setInterval( function() {
+        rush.getFiatPrice();
+    }, 20000 );	
+    rush.getFiatPrice();
+});
+</script>
+
 <!-- script src="webext/crypto-getRandomValues.js"/ -->
 <!-- webext end -->
 
