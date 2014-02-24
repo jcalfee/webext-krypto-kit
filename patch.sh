@@ -1,5 +1,9 @@
-#find src -maxdepth 1 -name "*.js"|xargs sed -i 's/chrome\.storage\.local\.get/_chrome_storage_local_get/g'
-#find src -maxdepth 1 -name "*.js"|xargs sed -i 's/chrome\.storage\.local\.set/_chrome_storage_local_set/g'
-#find src -maxdepth 1 -name "*.js"|xargs sed -i 's/chrome\.extension\.onRequest\.addListener/_chrome_extension_onRequest_addListener/g'
-#find src -maxdepth 1 -name "*.js"|xargs sed -i 's/chrome\./_chrome_/g'
-ls src/*.js|xargs sed -i 's/chrome\./_chrome./g'
+
+# Regular expressions here should be safe to run multiple times
+
+
+# Re-reference chrome API to local implementation (see webext/chrome-overrides.js)
+ls src/*.js|xargs sed -i 's/[^_]chrome\./_chrome./g'
+
+# bitcoinaverage will seend a permanent forward response to same path but ending with a /
+ls src/*.js|xargs sed -i 's#url: "https://api.bitcoinaverage.com/ticker/" + currency,#url: "https://api.bitcoinaverage.com/ticker/" + currency + "/",#g'

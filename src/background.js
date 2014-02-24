@@ -102,7 +102,7 @@ function getFiatValue ()
 
 		$.ajax({
 		    type: "GET",
-		    url: "https://api.bitcoinaverage.com/ticker/" + currency,
+		    url: "https://api.bitcoinaverage.com/ticker/" + currency + "/",
 		    async: true,
 		    data: {}
 
