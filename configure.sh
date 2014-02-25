@@ -2,8 +2,13 @@
 set -o errexit 
 set -o xtrace
 
+# Static Web Server
+# An alternative to "connect" https://github.com/nodeapps/http-server
 sudo apt-get install npm
 pushd src/webext
+# ... npm installs over https and may have trouble validating the 
+# ... certificute.  A work-around is to use http instead:
+# npm set registry http://registry.npmjs.org/
 test -d node_modules/connect || npm install connect
 popd
 
