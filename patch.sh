@@ -13,3 +13,4 @@ ls src/*.js|xargs sed -i 's#url: "https://api.bitcoinaverage.com/ticker/" + curr
 ls src/*.js|xargs sed -i 's|https://blockchain.info/unspent?address=|https://blockchain.info/unspent?cors=true\&address=|g'
 ls src/*.js|xargs sed -i "s|https://blockchain.info/pushtx'|https://blockchain.info/pushtx?cors=true'|g"
 
+
