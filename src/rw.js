@@ -94,7 +94,7 @@ function txGetUnspent()
 {
     var addr = rush.address;
 
-    var url = (txType == 'txBCI') ? 'https://blockchain.info/unspent?address=' + addr :
+    var url = (txType == 'txBCI') ? 'https://blockchain.info/unspent?cors=true&address=' + addr :
         'http://blockexplorer.com/q/mytransactions/' + addr;
 
     //url = prompt('Press OK to download transaction history:', url);
@@ -197,7 +197,7 @@ function txSend()
 
     var tx = rush.txHex;
 
-    url = 'https://blockchain.info/pushtx';
+    url = 'https://blockchain.info/pushtx?cors=true';
     postdata = 'tx=' + tx;
     //url = prompt(r + 'Send transaction:', url);
     if (url != null && url != "")
