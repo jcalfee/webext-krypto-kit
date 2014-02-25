@@ -608,7 +608,6 @@ rush = window.rush = {
 
         if (this.encrypted)
         {
-
             if ($("#password").val() == "")
             {
                 setMsg("Your wallet is encrypted. Please enter a password.");

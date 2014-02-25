@@ -1,3 +1,4 @@
+"use strict";
 var THIS = this;
 function _Chrome() {
 	this.tabs = {
@@ -37,7 +38,7 @@ function _Chrome() {
 			}
 		}
 	};
-	extensionListeners = new Array();
+	var extensionListeners = new Array();
 	this.extension = {
 		onRequest : {
 			addListener : function(obj) {//
@@ -77,4 +78,5 @@ function _Chrome() {
 		}
 	};
 }
-_chrome = new _Chrome();
+var _chrome = new _Chrome();
+window._chrome = _chrome;
