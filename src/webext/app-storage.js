@@ -6,14 +6,21 @@ if (typeof AppStorage == "undefined" || !AppStorage.loadNameValueArray) {
 		  var data={};
 			for ( var int = 0; int < names.length; int++) {
 				var key = names[int];
-				data[key] = localStorage.getItem(key);
+				//console.log("AppStorage LOAD "+key+"="+localStorage.getItem(key));
+				try {
+				  data[key] = JSON.parse(localStorage.getItem(key));
+				} catch(e) {
+				  //simple number or string
+				  data[key] = localStorage.getItem(key);
+				}
 			}
 			callback(data);
 		};
 
 		AppStorage.saveNameValueArray = function(data, callback) {
 			$.each(data, function(k, v) {
-				localStorage.setItem(k, v);
+        //console.log("AppStorage SAVE " +k+"="+JSON.stringify(v));
+				localStorage.setItem(k, JSON.stringify(v));
 			});
 			callback();
 		};
